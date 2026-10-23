@@ -1,9 +1,12 @@
 from business_rules import (
     calculate_license_cost,
     calculate_license_total,
+    format_license_line,
     get_seat_discount,
     gets_trainer,
+    largest_license,
     needs_contract_review,
+    total_licensed,
 )
 
 
@@ -85,3 +88,49 @@ def test_trainer_at_total_threshold():
 
 def test_trainer_above_total_threshold():
     assert gets_trainer(10, 3000.01) is True
+
+
+def test_total_licensed_multiple_orders():
+    orders = [
+        {"company": "Alpha", "seat_price": 40.0, "seats": 5, "education": False},
+        {"company": "Beta", "seat_price": 50.0, "seats": 20, "education": False},
+    ]
+    assert round(total_licensed(orders), 2) == 1190.00
+
+
+def test_total_licensed_empty():
+    assert total_licensed([]) == 0.0
+
+
+def test_largest_license():
+    orders = [
+        {"company": "Alpha", "seat_price": 40.0, "seats": 5, "education": False},
+        {"company": "Beta", "seat_price": 50.0, "seats": 20, "education": False},
+    ]
+    assert largest_license(orders) == "Beta"
+
+
+def test_largest_license_empty():
+    assert largest_license([]) == ""
+
+
+def test_largest_license_tie():
+    orders = [
+        {"company": "Alpha", "seat_price": 100.0, "seats": 5, "education": False},
+        {"company": "Beta", "seat_price": 100.0, "seats": 5, "education": False},
+    ]
+    assert largest_license(orders) == "Alpha"
+
+
+def test_format_license_line():
+    assert (
+        format_license_line("Alpha", 260.0, False, True)
+        == "Alpha: $260.00 | contract review: no | trainer: yes"
+    )
+
+
+def test_format_license_line_review():
+    assert (
+        format_license_line("Beta", 6300.0, True, True)
+        == "Beta: $6300.00 | contract review: yes | trainer: yes"
+    )

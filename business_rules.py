@@ -54,3 +54,49 @@ def needs_contract_review(total: float) -> bool:
 def gets_trainer(seats: int, total: float) -> bool:
     """Return whether an order qualifies for a trainer."""
     return seats >= TRAINER_MIN_SEATS or total > TRAINER_TOTAL_THRESHOLD
+
+
+def total_licensed(orders: list) -> float:
+    """Return the combined license total for all orders."""
+    total = 0.0
+
+    for order in orders:
+        total += calculate_license_total(
+            order["seat_price"],
+            order["seats"],
+            order["education"],
+        )
+
+    return total
+
+
+def largest_license(orders: list) -> str:
+    """Return the company with the largest license total."""
+    largest_company = ""
+    largest_total = -1.0
+
+    for order in orders:
+        total = calculate_license_total(
+            order["seat_price"],
+            order["seats"],
+            order["education"],
+        )
+
+        if total > largest_total:
+            largest_total = total
+            largest_company = order["company"]
+
+    return largest_company
+
+
+def format_license_line(
+    company: str, total: float, contract_review: bool, trainer: bool
+) -> str:
+    """Return a formatted license report line."""
+    review_text = "yes" if contract_review else "no"
+    trainer_text = "yes" if trainer else "no"
+
+    return (
+        f"{company}: ${total:.2f} | "
+        f"contract review: {review_text} | trainer: {trainer_text}"
+    )
