@@ -23,17 +23,21 @@ This program processes software license orders for Cloudstep Software. It calcul
 ## How to Run
 Open a terminal in the project folder and run:
 
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt
 python3 main.py
+```
 
 ## How to Test
 Run the following commands from the project folder with the virtual environment activated:
 
+```bash
 ruff format .
 ruff check .
 pytest -v
+```
 
 The project contains 30 tests covering the business rules, including discount thresholds, onboarding fees, contract reviews, trainer eligibility and order calculations.
 

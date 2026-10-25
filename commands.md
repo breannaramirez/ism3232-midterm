@@ -4,6 +4,7 @@
 
 Commands used to create the project and initialize Git:
 
+```bash
 cd ~/Documents
 mkdir ism3232-midterm
 cd ism3232-midterm
@@ -45,16 +46,25 @@ ruff format .
 ruff check .
 pytest -v
 git push -u origin main
+```
 
 ## 2. The virtual environment
+```bash
 which python3 
+```
 
+```text
 /Users/breannaramirez/Documents/ism3232-midterm/.venv/bin/python3
+```
 
 The path includes .venv/bin/python3, confirming that the project's virtual environment is active.
 
 ## 3. The project structure
+
+```bash
 tree -L 2
+```
+```text
 .
 ├── __pycache__
 │   └── business_rules.cpython-312.pyc
@@ -69,11 +79,14 @@ tree -L 2
     └── test_business_rules.py
 
 4 directories, 8 files
-
+```
 The __pyache__ folder exists locally but is not in the GitHub repositroy because Git ignores these automatically generated Python files.
 
 ## 4. Every function and test
+```bash
 rg 'def '
+```
+```text
 main.py
 11:def main():
 
@@ -157,20 +170,30 @@ commands.md
 115:59:def total_licensed(orders: list) -> float:
 116:73:def largest_license(orders: list) -> str:
 117:92:def format_license_line(
+```
 
 business_rules.py defines 8 functions and tests/test_business_rules.py defines 30 tests.
 
 ## 5. Which files print
+```bash
 rg -l 'print'
+```
+```text
 main.py
+```
 
 main.py contains the print statements used to display the report, while business_rules.py does not appear because it returns values instead of printing them.
 
 ## 6. The commit history
+```bash
 git log --oneline
+```
+
+```text
 7682e47 (HEAD -> main) Build Cloudstep order report and summary
 ecb8977 Add order aggregation and report formatting
 b13430c (origin/main) Add license pricing, discounts, review and trainer rules
 3e6f40a Set up midterm project structure and environment
+```
 
 There were 4 commits at the time of this check.
