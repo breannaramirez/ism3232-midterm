@@ -35,7 +35,7 @@ ruff format .
 ruff check .
 pytest -v
 
-The project contains 27 tests covering the business rules, including discount thresholds, onboarding fees, contract reviews, trainer eligibility and order calculations.
+The project contains 30 tests covering the business rules, including discount thresholds, onboarding fees, contract reviews, trainer eligibility and order calculations.
 
 ## Files in This Repository
 - .gitignore — Lists local files and folders that Git should ignore.
@@ -52,7 +52,7 @@ The project contains 27 tests covering the business rules, including discount th
 
 - tests/__init__.py — Marks the tests directory as a Python package.
 
-- tests/test_business_rules.py — Contains the 27 tests for the business-rule functions.
+- tests/test_business_rules.py — Contains the 30 tests for the business-rule functions.
 
 ## AI Use Statement
 AI was not used in this assignment.

@@ -77,6 +77,16 @@ rg 'def '
 main.py
 11:def main():
 
+business_rules.py
+18:def calculate_license_cost(seat_price: float, seats: int) -> float:
+23:def get_seat_discount(seats: int, education: bool = False) -> float:
+35:def calculate_license_total(
+49:def needs_contract_review(total: float) -> bool:
+54:def gets_trainer(seats: int, total: float) -> bool:
+59:def total_licensed(orders: list) -> float:
+73:def largest_license(orders: list) -> str:
+92:def format_license_line(
+
 tests/test_business_rules.py
 13:def test_license_cost():
 17:def test_license_cost_zero_seats():
@@ -105,18 +115,50 @@ tests/test_business_rules.py
 117:def test_largest_license_tie():
 125:def test_format_license_line():
 132:def test_format_license_line_review():
+139:def test_discount_education_just_below_fifty():
+143:def test_discount_above_fifty_education():
+147:def test_format_license_line_no_services():
 
-business_rules.py
-18:def calculate_license_cost(seat_price: float, seats: int) -> float:
-23:def get_seat_discount(seats: int, education: bool = False) -> float:
-35:def calculate_license_total(
-49:def needs_contract_review(total: float) -> bool:
-54:def gets_trainer(seats: int, total: float) -> bool:
-59:def total_licensed(orders: list) -> float:
-73:def largest_license(orders: list) -> str:
-92:def format_license_line(
+commands.md
+76:rg 'def '
+78:11:def main():
+81:13:def test_license_cost():
+82:17:def test_license_cost_zero_seats():
+83:21:def test_discount_below_ten():
+84:25:def test_discount_at_ten():
+85:29:def test_discount_at_forty_nine():
+86:33:def test_discount_education_at_fifty():
+87:37:def test_discount_regular_at_fifty():
+88:41:def test_license_total_with_onboarding_fee():
+89:45:def test_license_total_without_onboarding_fee():
+90:49:def test_license_total_education_discount():
+91:53:def test_license_total_with_discount_and_fee():
+92:57:def test_license_total_above_fee_threshold():
+93:61:def test_license_total_exact_fee_threshold():
+94:65:def test_contract_review_below_threshold():
+95:69:def test_contract_review_at_threshold():
+96:73:def test_contract_review_above_threshold():
+97:77:def test_trainer_below_both_thresholds():
+98:81:def test_trainer_at_seat_threshold():
+99:85:def test_trainer_at_total_threshold():
+100:89:def test_trainer_above_total_threshold():
+101:93:def test_total_licensed_multiple_orders():
+102:101:def test_total_licensed_empty():
+103:105:def test_largest_license():
+104:113:def test_largest_license_empty():
+105:117:def test_largest_license_tie():
+106:125:def test_format_license_line():
+107:132:def test_format_license_line_review():
+110:18:def calculate_license_cost(seat_price: float, seats: int) -> float:
+111:23:def get_seat_discount(seats: int, education: bool = False) -> float:
+112:35:def calculate_license_total(
+113:49:def needs_contract_review(total: float) -> bool:
+114:54:def gets_trainer(seats: int, total: float) -> bool:
+115:59:def total_licensed(orders: list) -> float:
+116:73:def largest_license(orders: list) -> str:
+117:92:def format_license_line(
 
-business_rules.py defines 8 functions, and tests/test_business_rules.py defines 27 tests.
+business_rules.py defines 8 functions and tests/test_business_rules.py defines 30 tests.
 
 ## 5. Which files print
 rg -l 'print'
