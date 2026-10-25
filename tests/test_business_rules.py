@@ -134,3 +134,18 @@ def test_format_license_line_review():
         format_license_line("Beta", 6300.0, True, True)
         == "Beta: $6300.00 | contract review: yes | trainer: yes"
     )
+
+
+def test_discount_education_just_below_fifty():
+    assert get_seat_discount(49, True) == 0.07
+
+
+def test_discount_above_fifty_education():
+    assert get_seat_discount(51, True) == 0.16
+
+
+def test_format_license_line_no_services():
+    assert (
+        format_license_line("Gamma", 260.0, False, False)
+        == "Gamma: $260.00 | contract review: no | trainer: no"
+    )
